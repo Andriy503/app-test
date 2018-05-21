@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>application</title>
+	<meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+</head>
+<body>
+	<input type="submit" name="send" class="btn_open" id="send_api" data-popup-open="popup-1" value="Open modal window" >
+	<div class="popup" data-popup="popup-1">
+		<div class="popup-inner">
+			<h2>Mobile Phones</h2>
+			<button class="btn btn-success show_all" style="margin-bottom: 10px;">Show Phones</button>
+
+			<table class="table">
+			  <thead class="thead-dark">
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col">Name <img style="" src="img/down.png" width="15"></th>
+			      <th scope="col">Price <img style="" src="img/up.png" class="sort_down" width="15"></th>
+			    </tr>
+
+			  </thead>
+			  <tbody class="tbl_test">
+			  </tbody>
+			</table>
+
+			<a data-popup-close="popup-1" class="btn btn-danger" href="#" style="margin-bottom: 10px;">Close</a></p>
+			<a class="popup-close" data-popup-close="popup-1" href="#">x</a>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
