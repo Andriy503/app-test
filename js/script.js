@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	var mobile = [];
+	var mobile_ot = [];
 
 	$("#send_api").click(function() {
 		$.ajax({
@@ -8,13 +9,17 @@ $(document).ready(function() {
 			dataType: "JSON",
 			success: function(response) {
 				var len = response.length;
-				console.log(response);
+				// console.log(response);
 
 				for (var i=0; i < len; i++) {
 					var name = response[i].name;	
 					var price = response[i].price;
 
-					mobile[i] = {name: name, price: price};
+					if(i < 5) {
+						mobile[i] = {name: name, price: price};	
+					} else {
+						mobile_ot.push({name: name, price: price})
+					}
 				}
 			}
 		});
@@ -43,7 +48,8 @@ $(document).ready(function() {
 			return (a.price - b.price);
 		}
 
-		console.log(mobile.sort(num_sort));	
+		mobile.sort(num_sort);
+			
 		$(".out_tov").hide();
 		$(".filt_name_out_tov").hide();	
 
@@ -69,7 +75,8 @@ $(document).ready(function() {
 		  var bName = b.name.toLowerCase(); 
 		  return ((aName < bName) ? -1 : ((aName > bName) ? 1 : 0));
 		}
-		console.log(mobile.sort(SortByName));
+
+		mobile.sort(SortByName);
 
 		$(".filt_price_out_tov").hide();
 		$(".out_tov").hide();
@@ -87,7 +94,7 @@ $(document).ready(function() {
 			$(".tbl_test").append(tr_str);	
 		}
 	});
-	
+
 });
 
 $(function() {

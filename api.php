@@ -19,17 +19,9 @@
 	}
 
 	for ($i=0; $i < count($array_elents_name); $i++) { 
-		if($i < 5){
-			$data[] = array("name" => $array_elents_name[$i], "price" => $array_elents_price[$i]);
-		} else {
-			$array_different_name[] = array("name" => $array_elents_name[$i], "price" => $array_elents_price[$i]);
-			$_SESSION['check_many_tov'] = "true";
-		}
+		$data[] = array("name" => $array_elents_name[$i], "price" => $array_elents_price[$i]);
+	
 	}
-
-	// if(isset($_SESSION['check_many_tov'])){
-	// 	echo "<a href='#'>next page</a>"."<br>";
-	// }
 
 	echo json_encode($data);
 
