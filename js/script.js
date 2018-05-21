@@ -11,13 +11,10 @@ $(document).ready(function() {
 				console.log(response);
 
 				for (var i=0; i < len; i++) {
-
 					var name = response[i].name;	
 					var price = response[i].price;
 
-					mobile[i] = [
-									{name: name, price: price}
-							 	];
+					mobile[i] = {name: name, price: price};
 				}
 			}
 		});
@@ -27,10 +24,10 @@ $(document).ready(function() {
 		$(".table").fadeIn(500);
 		this.style.display = 'none';
 		for(var i=0; i<mobile.length; i++){
-			name_resp = mobile[i][0].name;
-			price_resp = mobile[i][0].price;
+			name_resp = mobile[i].name;
+			price_resp = mobile[i].price;
 
-			tr_str = "<tr>" +
+			tr_str = "<tr class='out_tov'>" +
 							"<th scope='row'>"+ (i+1) +"</th>" +
 		                    "<td style='color: blue'>" + name_resp + "</td>" +
 		                    "<td style='color: #a01c1c'><strong>" + price_resp + "</strong></td>" +
@@ -41,10 +38,56 @@ $(document).ready(function() {
 	});
 
 	$(".sort_down").click(function() {
-		for(var i=0; i<mobile.length; i++){
-			console.log(mobile[i][0].name, mobile[i][0].price)
+		// sorting price
+		function num_sort(a,b) {
+			return (a.price - b.price);
+		}
+
+		console.log(mobile.sort(num_sort));	
+		$(".out_tov").hide();
+		$(".filt_name_out_tov").hide();	
+
+		for(var i = 0; i < mobile.length; i++){
+			name = mobile[i].name;
+			price = mobile[i].price;
+
+			tr_str = "<tr class='filt_price_out_tov'>" +
+							"<th scope='row'>"+ (i+1) +"</th>" +
+		                    "<td style='color: blue'>" + name + "</td>" +
+		                    "<td style='color: #d61111;text-align: center; background-color: #939393;'><strong>" + price + "</strong></td>" +
+		                 "</tr>";
+
+			$(".tbl_test").append(tr_str);
+		}
+		
+	});
+
+	$(".sort_up").click(function() {
+		// sorting name
+		function SortByName(a, b){
+		  var aName = a.name.toLowerCase();
+		  var bName = b.name.toLowerCase(); 
+		  return ((aName < bName) ? -1 : ((aName > bName) ? 1 : 0));
+		}
+		console.log(mobile.sort(SortByName));
+
+		$(".filt_price_out_tov").hide();
+		$(".out_tov").hide();
+		
+		for(var i = 0; i < mobile.length; i++){
+			var name_1 = mobile[i].name;
+			var price_1 = mobile[i].price;
+
+			tr_str = "<tr class='filt_name_out_tov'>" +
+							"<th scope='row'>"+ (i+1) +"</th>" +
+		                    "<td style='color: blue; background-color: #9b9b9b;'>" + name_1 + "</td>" +
+		                    "<td style='color: #e20606;text-align: center;'><strong>" + price_1 + "</strong></td>" +
+		                 "</tr>";
+
+			$(".tbl_test").append(tr_str);	
 		}
 	});
+	
 });
 
 $(function() {
